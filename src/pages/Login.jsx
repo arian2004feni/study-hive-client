@@ -1,7 +1,6 @@
 import React from "react";
-import { GiBookCover } from "react-icons/gi";
-import { PiUsersThreeBold } from "react-icons/pi";
 import { Link } from "react-router";
+import Logo from "../component/logo";
 
 const Login = () => {
   return (
@@ -9,10 +8,7 @@ const Login = () => {
       <div className="mt-10 bg-white shadow-md rounded px-8 py-6 mb-4 w-full max-w-sm">
         <div className="">
           <div className="btn btn-ghost text-3xl font-black text-[#002147e1] font-body p-0">
-            <span className="flex flex-col-reverse items-center text-main">
-              <GiBookCover className="text-4xl" />{" "}
-              <PiUsersThreeBold className="text-2xl -mb-3" />
-            </span>{" "}
+            <Logo />
           </div>
         </div>
         <h1 className="text-3xl font-body font-bold mt-5">Sign in</h1>
@@ -22,7 +18,7 @@ const Login = () => {
             Register here
           </Link>
         </p>
-        <form className="">
+        <form>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -34,7 +30,7 @@ const Login = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               name="email"
-              type="text"
+              type="email"
               placeholder="Email Address"
             />
           </div>
@@ -50,7 +46,7 @@ const Login = () => {
               id="password"
               type="password"
               name="password"
-              placeholder="******************"
+              placeholder="**********"
             />
             {/* <p className="text-right text-blue-500">Forgot Password?</p> */}
           </div>

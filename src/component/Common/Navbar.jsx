@@ -1,8 +1,6 @@
 import React from "react";
-import { GiBookCover } from "react-icons/gi";
-import { MdAssignment } from "react-icons/md";
-import { PiCirclesThreeFill, PiUsersThreeBold } from "react-icons/pi";
 import { Link, NavLink } from "react-router";
+import Logo from "../logo";
 
 const Navbar = () => {
   const links = (
@@ -27,10 +25,7 @@ const Navbar = () => {
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
           <a className="btn btn-ghost text-2xl font-black text-[#002147e1] font-body">
-            <span className="flex flex-col-reverse items-center text-main">
-              <GiBookCover className="text-4xl" />{" "}
-              <PiUsersThreeBold className="text-2xl -mb-3" />
-            </span>{" "}
+            <Logo />
             StudyHive
           </a>
         </div>
@@ -38,8 +33,11 @@ const Navbar = () => {
           <ul className="menu font-body menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login" role="button" className="btn btn-ghost">
+          <Link to="/login" role="button" className="btn btn-ghost mr-2">
             Login
+          </Link>
+          <Link to="/register" role="button" className="btn bg-main text-white btn-ghost">
+            Register
           </Link>
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
