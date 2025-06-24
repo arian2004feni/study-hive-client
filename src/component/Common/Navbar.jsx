@@ -32,14 +32,14 @@ const Navbar = () => {
 
   return (
     <nav className="bg-heading sticky top-0 z-50">
-      <div className="navbar container mx-auto shadow-sm">
-        <div className="navbar-start">
+      <div className="navbar container mx-auto">
+        <div className="navbar-start flex-0">
           <a className="btn btn-ghost text-2xl text-white font-black font-body">
             <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
             StudyHive
           </a>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end flex-1">
           <div className="hidden lg:flex mr-12">
             <ul className="menu menu-lg font-medium text-white opacity-80 menu-horizontal px-1">{links}</ul>
           </div>
