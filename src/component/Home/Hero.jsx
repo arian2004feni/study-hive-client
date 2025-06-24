@@ -1,4 +1,3 @@
-import React from "react";
 import banner from "../../assets/hero.jpg";
 
 const Hero = () => {
@@ -12,7 +11,7 @@ const Hero = () => {
         }}
       >
         <div className="hero-overlay bg-heading/90"></div>
-        <div className="hero-content font-body text-neutral-content">
+        <div className="hero-content p-8 xl:max-w-10/12 max-lg:container mx-auto font-body text-neutral-content">
           <div className="max-w-5xl">
             <h1 className="mb-5 text-xl">Together, Grow Faster &mdash;</h1>
             <p className="mb-5 text-5xl font-bold">

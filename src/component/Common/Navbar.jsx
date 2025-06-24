@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import { use } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../AuthContext/AuthContext";
@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-heading sticky top-0 z-50">
-      <div className="navbar container mx-auto">
+      <div className="navbar xl:max-w-10/12 max-lg:xl:max-w-10/12 px-6 max-lg:container mx-auto">
         <div className="navbar-start flex-0">
           <a className="btn btn-ghost text-2xl text-white font-black font-body">
             <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
