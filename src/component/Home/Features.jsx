@@ -9,12 +9,11 @@ import { TfiWorld } from "react-icons/tfi";
 const Features = () => {
   return (
     <section className="xl:max-w-10/12 max-lg:container mx-auto my-16 rounded-lg z-10">
-      <h3 className="uppercase text-center text-5xl text-black/80 font-medium mb-4">
-        {" "}
-        Features{" "}
+      <h3 className="uppercase text-center text-5xl text-heading font-medium mb-4">
+        &mdash; Features &mdash;
       </h3>
       <h1 className="text-center">
-        &mdash; An exemplary learning community &mdash;
+        An exemplary learning community
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:gap-6 gap-6 p-6">
 

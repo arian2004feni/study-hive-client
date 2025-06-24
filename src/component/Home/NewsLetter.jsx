@@ -5,7 +5,7 @@ const NewsLetter = () => {
     <section className="flex flex-col lg:flex-row xl:max-w-10/12 max-lg:container mx-auto my-16 gap-8 p-6 rounded-lg">
       <div className="flex-1 flex bg-heading/90 text-white px-8 rounded">
         <div className="font-body my-auto">
-          <h3 className="font-bold text-2xl mb-4">
+          <h3 className="font-bold text-3xl mb-4">
             Built by Students, for Students
           </h3>
           <p className="text-lg mb-6">
