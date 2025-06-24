@@ -36,7 +36,11 @@ const Navbar = () => {
           <Link to="/login" role="button" className="btn btn-ghost mr-2">
             Login
           </Link>
-          <Link to="/register" role="button" className="btn bg-main text-white btn-ghost">
+          <Link
+            to="/register"
+            role="button"
+            className="btn bg-main text-white btn-ghost"
+          >
             Register
           </Link>
           <div className="dropdown dropdown-end">
@@ -59,7 +63,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-md dropdown-content bg-white rounded-box z-1 mt-4 w-52 p-2 shadow"
             >
               {links}
             </ul>
