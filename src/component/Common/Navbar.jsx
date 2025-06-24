@@ -1,5 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { GiBookCover } from "react-icons/gi";
+import { MdAssignment } from "react-icons/md";
+import { PiCirclesThreeFill, PiUsersThreeBold } from "react-icons/pi";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const links = (
@@ -13,18 +16,8 @@ const Navbar = () => {
       <li>
         <NavLink>Pending Assignments</NavLink>
       </li>
-      <li className="dropdown dropdown-center dropdown-hover">
-        <NavLink>profile</NavLink>
-        <ul
-            className="menu bg-base-300 dropdown-content menu-sm rounded-box z-1 w-52 p-2 shadow"
-          >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
-          </ul>
+      <li>
+        <a>profile</a>
       </li>
     </>
   );
@@ -33,15 +26,15 @@ const Navbar = () => {
     <nav>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
-          <a className="btn btn-ghost text-xl">StudyHive</a>
+          <a className="btn btn-ghost text-2xl font-black text-heading font-body"><span className="flex flex-col-reverse items-center text-main"><GiBookCover className="text-3xl"/> <PiUsersThreeBold className="text-2xl -mb-3" /></span> StudyHive</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu font-heading menu-horizontal px-1">{links}</ul>
+          <ul className="menu font-body menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a role="button" className="btn btn-ghost">
+          <Link to="/login" role="button" className="btn btn-ghost">
             Logout
-          </a>
+          </Link>
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg

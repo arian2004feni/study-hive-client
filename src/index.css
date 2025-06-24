@@ -6,5 +6,7 @@
 
 
 @theme {
-  --font-heading: "Rubik", sans-serif;
+  --font-body: "Rubik", sans-serif;
+  --color-main: #fdc800;
+  --color-heading: #002147;
 }
