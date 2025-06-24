@@ -2,11 +2,18 @@
 @plugin "daisyui" {
   themes: light, dark;
 }
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 @theme {
   --font-body: "Rubik", sans-serif;
   --color-main: #fdc800;
   --color-heading: #002147;
+}
+
+.btn-ghost {
+  border: none;
 }

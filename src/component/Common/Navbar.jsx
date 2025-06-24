@@ -26,14 +26,20 @@ const Navbar = () => {
     <nav>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
-          <a className="btn btn-ghost text-2xl font-black text-heading font-body"><span className="flex flex-col-reverse items-center text-main"><GiBookCover className="text-3xl"/> <PiUsersThreeBold className="text-2xl -mb-3" /></span> StudyHive</a>
+          <a className="btn btn-ghost text-2xl font-black text-[#002147e1] font-body">
+            <span className="flex flex-col-reverse items-center text-main">
+              <GiBookCover className="text-4xl" />{" "}
+              <PiUsersThreeBold className="text-2xl -mb-3" />
+            </span>{" "}
+            StudyHive
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu font-body menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
           <Link to="/login" role="button" className="btn btn-ghost">
-            Logout
+            Login
           </Link>
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
