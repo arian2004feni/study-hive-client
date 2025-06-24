@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar container shadow-sm">
         <div className="navbar-start">
           <a className="btn btn-ghost text-2xl text-[#002147e1] font-black font-body">
             <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
