@@ -5,14 +5,23 @@ import logo from "../assets/logo.png";
 import Google from "../component/Google";
 
 const Login = () => {
-  // const {  } = use(AuthContext);
+  const { signInUser } = use(AuthContext);
 
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
+
+    signInUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        alert("User signed in successfully:", user);
+      })
+      .catch((error) => {
+        alert("Error signing in user:", error);
+      });
   };
 
   return (
