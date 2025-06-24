@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <header>
       <div
-        className="hero min-h-[calc(100vh-80px)]"
+        className="hero min-h-[calc(100vh-72px)]"
         style={{
           backgroundImage:
             `url(${banner})`,
