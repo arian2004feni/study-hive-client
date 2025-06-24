@@ -1,8 +1,21 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
-import Logo from "../logo";
+import logo from "../../assets/logo.png";
+import { AuthContext } from "../../AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user, signOutUser } = use(AuthContext);
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        alert("User signed out successfully");
+      })
+      .catch((error) => {
+        console.error("Error signing out user:", error);
+      });
+  };
+
   const links = (
     <>
       <li>
@@ -14,9 +27,6 @@ const Navbar = () => {
       <li>
         <NavLink>Pending Assignments</NavLink>
       </li>
-      <li>
-        <a>profile</a>
-      </li>
     </>
   );
 
@@ -24,25 +34,44 @@ const Navbar = () => {
     <nav>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
-          <a className="btn btn-ghost text-2xl font-black text-[#002147e1] font-body">
-            <Logo />
+          <a className="btn btn-ghost text-2xl text-[#002147e1] font-black font-body">
+            <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
             StudyHive
           </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu font-body menu-horizontal px-1">{links}</ul>
-        </div>
         <div className="navbar-end">
-          <Link to="/login" role="button" className="btn btn-ghost mr-2">
-            Login
-          </Link>
-          <Link
-            to="/register"
-            role="button"
-            className="btn bg-main text-white btn-ghost"
-          >
-            Register
-          </Link>
+          <div className="hidden lg:flex mr-12">
+            <ul className="menu menu-lg font-medium opacity-80 menu-horizontal px-1">{links}</ul>
+          </div>
+          {!user ? (
+            <>
+              <Link to="/login" role="button" className="btn text-lg btn-ghost mr-2">
+                Login
+              </Link>
+              <Link
+                to="/register"
+                role="button"
+                className="btn text-lg bg-main text-white btn-ghost"
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="avatar avatar-online mr-2">
+                <div className="w-12 rounded-full">
+                  <img src={user.photoURL} alt="profile pic" onError={e => e.target.src = 'https://i.ibb.co/JX3zV4J/pngtree-vector-avatar-icon-png-image-889567-removebg-preview.png'} />
+                </div>
+              </div>
+              <button
+                onClick={handleSignOut}
+                role="button"
+                className="btn text-lg bg-main text-white btn-ghost"
+              >
+                Logout
+              </button>
+            </>
+          )}
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
