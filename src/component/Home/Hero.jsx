@@ -11,14 +11,14 @@ const Hero = () => {
             `url(${banner})`,
         }}
       >
-        <div className="hero-overlay bg-slate-950/80"></div>
+        <div className="hero-overlay bg-heading/90"></div>
         <div className="hero-content font-body text-neutral-content">
           <div className="max-w-5xl">
             <h1 className="mb-5 text-xl">Together, Grow Faster &mdash;</h1>
             <p className="mb-5 text-5xl font-bold">
               Study sessions just got real. Assign, complete, and review with friends.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-primary bg-[#fdcd33] hover:bg-main text-heading">Get Started</button>
           </div>
         </div>
       </div>

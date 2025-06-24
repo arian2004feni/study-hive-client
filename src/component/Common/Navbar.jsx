@@ -31,27 +31,27 @@ const Navbar = () => {
   );
 
   return (
-    <nav>
+    <nav className="bg-heading sticky top-0 z-50">
       <div className="navbar container mx-auto shadow-sm">
         <div className="navbar-start">
-          <a className="btn btn-ghost text-2xl text-[#002147e1] font-black font-body">
+          <a className="btn btn-ghost text-2xl text-white font-black font-body">
             <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
             StudyHive
           </a>
         </div>
         <div className="navbar-end">
           <div className="hidden lg:flex mr-12">
-            <ul className="menu menu-lg font-medium opacity-80 menu-horizontal px-1">{links}</ul>
+            <ul className="menu menu-lg font-medium text-white opacity-80 menu-horizontal px-1">{links}</ul>
           </div>
           {!user ? (
             <>
-              <Link to="/login" role="button" className="btn text-lg btn-ghost mr-2">
+              <Link to="/login" role="button" className="btn text-white text-lg btn-ghost mr-2">
                 Login
               </Link>
               <Link
                 to="/register"
                 role="button"
-                className="btn text-lg bg-main text-white btn-ghost"
+                className="btn text-lg bg-main text-heading/80 btn-ghost"
               >
                 Register
               </Link>
@@ -66,7 +66,7 @@ const Navbar = () => {
               <button
                 onClick={handleSignOut}
                 role="button"
-                className="btn text-lg bg-main text-white btn-ghost"
+                className="btn text-lg bg-main text-heading/80 btn-ghost"
               >
                 Logout
               </button>
