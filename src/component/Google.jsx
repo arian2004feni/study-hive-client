@@ -1,25 +1,29 @@
 import React, { use } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
+import { useLocation, useNavigate } from "react-router";
 
 const Google = () => {
+  const { signInGoogleUser } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const { signInGoogleUser } = use(AuthContext);
-
-    const handleGoogleSignIn = () => {
-        signInGoogleUser()
-            .then((res) => {
-                const user = res.user;
-                console.log("User signed in successfully:", user);
-            })
-            .catch((error) => {
-                console.error("Error signing in with Google:", error);
-            });
-    }
+  const handleGoogleSignIn = () => {
+    signInGoogleUser()
+      .then((res) => {
+        const user = res.user;
+        console.log("User signed in successfully:", user);
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        console.error("Error signing in with Google:", error);
+      });
+  };
 
   return (
     <button
-    onClick={handleGoogleSignIn}
-    className="btn bg-white text-black border-none hover:bg-gray-200 btn-block mt-4">
+      onClick={handleGoogleSignIn}
+      className="btn bg-white text-black border-none hover:bg-gray-200 btn-block mt-4"
+    >
       <svg
         aria-label="Google logo"
         width="16"

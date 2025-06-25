@@ -1,11 +1,13 @@
 import { use } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import logo from "../assets/logo.png";
 import Google from "../component/Google";
 
 const Login = () => {
   const { signInUser } = use(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -18,6 +20,7 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         alert("User signed in successfully:", user);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         alert("Error signing in user:", error);
