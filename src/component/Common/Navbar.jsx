@@ -19,13 +19,13 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink>Assignments</NavLink>
+        <NavLink to="/assignment">Assignments</NavLink>
       </li>
       <li>
-        <NavLink>Pending Assignments</NavLink>
+        <NavLink to="/pending">Pending Assignments</NavLink>
       </li>
     </>
   );
@@ -34,10 +34,10 @@ const Navbar = () => {
     <nav className="bg-heading sticky top-0 z-50">
       <div className="navbar xl:max-w-10/12 max-lg:xl:max-w-10/12 px-6 max-lg:container mx-auto">
         <div className="navbar-start flex-0">
-          <a className="flex items-center gap-2 text-2xl text-white font-black font-body">
+          <Link to="/" className="flex items-center gap-2 text-2xl text-white font-black font-body">
             <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
             StudyHive
-          </a>
+          </Link>
         </div>
         <div className="navbar-end flex-1">
           <div className="hidden lg:flex mr-12">
