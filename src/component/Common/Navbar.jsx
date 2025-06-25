@@ -34,7 +34,7 @@ const Navbar = () => {
     <nav className="bg-heading sticky top-0 z-50">
       <div className="navbar xl:max-w-10/12 max-lg:xl:max-w-10/12 px-6 max-lg:container mx-auto">
         <div className="navbar-start flex-0">
-          <a className="btn btn-ghost text-2xl text-white font-black font-body">
+          <a className="flex items-center gap-2 text-2xl text-white font-black font-body">
             <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
             StudyHive
           </a>
@@ -45,13 +45,13 @@ const Navbar = () => {
           </div>
           {!user ? (
             <>
-              <Link to="/login" role="button" className="btn text-white text-lg btn-ghost mr-2">
+              <Link to="/login" role="button" className="btn hidden lg:flex text-heading bg-white text-lg btn-ghost mr-2">
                 Login
               </Link>
               <Link
                 to="/register"
                 role="button"
-                className="btn text-lg bg-main text-heading/80 btn-ghost"
+                className="btn hidden lg:flex text-lg bg-main text-heading/80 btn-ghost"
               >
                 Register
               </Link>
@@ -66,17 +66,17 @@ const Navbar = () => {
               <button
                 onClick={handleSignOut}
                 role="button"
-                className="btn text-lg bg-main text-heading/80 btn-ghost"
+                className="btn hidden lg:flex text-lg bg-main text-heading/80 btn-ghost"
               >
                 Logout
               </button>
             </>
           )}
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost text-white hover:text-heading lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-7 w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -92,9 +92,33 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-md dropdown-content bg-white rounded-box z-1 mt-4 w-52 p-2 shadow"
+              className="menu menu-lg dropdown-content bg-white rounded-box z-1 mt-6 w-56 text-center p-2 shadow-xl gap-2"
             >
               {links}
+              {!user ? (
+            <>
+              <Link to="/login" role="button" className="btn text-white bg-heading text-lg btn-ghost mr-2">
+                Login
+              </Link>
+              <Link
+                to="/register"
+                role="button"
+                className="btn text-lg bg-main text-heading/80 btn-ghost"
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleSignOut}
+                role="button"
+                className="btn text-lg bg-main text-heading/80 btn-ghost"
+              >
+                Logout
+              </button>
+            </>
+          )}
             </ul>
           </div>
         </div>

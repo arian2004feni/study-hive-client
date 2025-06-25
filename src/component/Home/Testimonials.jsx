@@ -19,8 +19,8 @@ const Testimonials = () => {
                 features are amazing!"
                 
               </p>
-              <div className="flex mt-4 gap-3 justify-center items-center">
-                <div className="avatar relative">
+              <div className="flex mt-4 gap-3 items-center">
+                <div className="avatar ml-8 relative">
                     <span className="absolute rotate-45 -top-12 left-4 size-8 bg-gray-200 z-1"></span>
                   <div className="size-16 rounded-full">
                     <img src="https://img.daisyui.com/images/profile/demo/distracted3@192.webp" />
@@ -42,7 +42,7 @@ const Testimonials = () => {
                 and on track."
                 
               </p>
-              <div className="flex mt-4 gap-3 justify-center items-center">
+              <div className="flex mt-4 gap-3 ml-8 items-center">
                 <div className="avatar relative">
                     <span className="absolute rotate-45 -top-12 size-8 left-4 bg-gray-200 z-1"></span>
                   <div className="size-16 rounded-full">
@@ -62,7 +62,7 @@ const Testimonials = () => {
                 "The progress tracking feature is a game changer. I can see how
                 much I've accomplished."
               </p>
-              <div className="flex mt-4 gap-3 justify-center items-center">
+              <div className="flex mt-4 gap-3 ml-8 items-center">
                 <div className="avatar relative">
                   <span className="absolute rotate-45 -top-12 left-4 size-8 bg-gray-200 z-1"></span>
                   <div className="size-16 rounded-full">

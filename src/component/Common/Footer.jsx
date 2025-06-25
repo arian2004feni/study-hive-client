@@ -6,8 +6,8 @@ import { MdOutlinePhoneInTalk } from "react-icons/md";
 const Footer = () => {
   return (
     <footer className="bg-gray-200">
-      <div className="footer sm:footer-horizontal justify-center xl:max-w-10/12 max-lg:container mx-auto text-base-content p-10 gap-20">
-        <aside className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+      <div className="footer sm:footer-horizontal justify-center xl:max-w-10/12 max-lg:container mx-auto text-base-content p-10 gap-10 md:gap-20">
+        <aside className="flex mx-auto flex-col items-center bg-white p-6 rounded-lg shadow-lg">
           <img src="src/assets/logo.png" alt="logo" className="rotate-90 w-14" />
           <div>
             <h3 className="text-center text-lg font-bold">Study-Hive</h3>

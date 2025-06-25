@@ -3,8 +3,8 @@ import man from "./../../assets/college-guy.png";
 const NewsLetter = () => {
   return (
     <section className="flex flex-col lg:flex-row xl:max-w-10/12 max-lg:container mx-auto my-16 gap-8 p-6 rounded-lg">
-      <div className="flex-1 flex bg-heading/90 text-white px-8 rounded">
-        <div className="font-body my-auto">
+      <div className="flex-1 flex bg-heading/90 text-white pl-8 rounded">
+        <div className="font-body my-auto pt-8">
           <h3 className="font-bold text-3xl mb-4">
             Built by Students, for Students
           </h3>
@@ -14,8 +14,8 @@ const NewsLetter = () => {
             grading each other's.
           </p>
         </div>
-        <div className="flex-shrink-0">
-          <img src={man} alt="man" className="h-72" />
+        <div className="flex-shrink-0 lg:w-52 md:w-72 sm:w-64 w-52 relative">
+          <img src={man} alt="man" className="lg:h-72 md:h-72 sm:h-80 bottom-0 left-0 absolute" />
         </div>
       </div>
       <div className="flex-1 flex flex-col justify-center bg-main text-heading p-8 rounded">

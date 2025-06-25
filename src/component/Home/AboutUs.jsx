@@ -1,10 +1,10 @@
 import about from "../../assets/about.png";
 const AboutUs = () => {
   return (
-    <section className="xl:max-w-10/12 max-lg:container mx-auto my-24 p-6 rounded flex flex-col lg:flex-row gap-20">
-      <div className="flex-shrink-0 relative">
-        <img src={about} alt="About Us" className="z-1 p-0 shadow" />
-        <div className="w-full h-[calc(100%-48px)] bg-main absolute -z-1 left-6 top-6 rounded"></div>
+    <section className="xl:max-w-10/12 max-lg:container mx-auto my-24 mt-12 p-6 rounded flex flex-col lg:flex-row xl:gap-20 lg:gap-10 gap-20">
+      <div className="flex-shrink-0 lg:flex-shrink-1/2 relative">
+        <img src={about} alt="About Us" className="z-1 p-0 shadow xl:w-full md:w-10/12 w-11/12" />
+        <div className="xl:w-full lg:w-10/12 md:w-10/12 w-11/12 h-full lg:h-[calc(100%-48px)] bg-main absolute -z-1 left-6 top-6 rounded-xl"></div>
       </div>
       <div className="my-auto">
         <h3 className="text-2xl text-black/60 font-medium mb-4">

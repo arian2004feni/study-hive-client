@@ -8,14 +8,14 @@ import { TfiWorld } from "react-icons/tfi";
 
 const Features = () => {
   return (
-    <section className="xl:max-w-10/12 max-lg:container mx-auto my-16 rounded-lg z-10">
-      <h3 className="uppercase text-center text-5xl text-heading font-medium mb-4">
+    <section className="lg:max-w-10/12 max-lg:container mx-auto my-16 rounded-lg z-10 transform -translate-y-28 bg-white shadow-lg pt-10">
+      <h3 className="uppercase text-center text-xl text-heading font-medium mb-4">
         &mdash; Features &mdash;
       </h3>
-      <h1 className="text-center">
+      <h1 className="text-center text-4xl font-bold text-heading mb-8">
         An exemplary learning community
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:gap-6 gap-6 p-6">
+      <div className="grid max-[510px]:grid-cols-1 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:gap-6 lg:gap-0 md:gap-6 sm:gap-0 gap-6 p-6">
 
         <div className="card card_hover">
           <div className="card-body">
