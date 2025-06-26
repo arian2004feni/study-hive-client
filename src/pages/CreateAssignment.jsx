@@ -4,7 +4,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CreateAssignment = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+
+  const handleCreateAsm = (e) => {
+    e.preventDefault()
+
+    const form = e.target;
+    const formData = new FormData(form)
+
+    const assignment = Object.fromEntries(formData.entries());
+    console.log(assignment)
+  }
 
   return (
     <section className="bg-gray-100">
@@ -23,38 +34,60 @@ const CreateAssignment = () => {
             </p>
           </div>
           <div className="w-full">
-            <form className="grid grid-cols-2 w-full gap-6">
+            <form onSubmit={handleCreateAsm} className="grid grid-cols-2 w-full gap-6">
               <label className="floating-label col-span-2 w-full">
                 <span>Title</span>
                 <input
+                  required
                   type="text"
+                  name="title"
                   placeholder="title"
                   className="input input-lg w-full"
                 />
               </label>
 
-              <select defaultValue="Type" className="select select-lg w-full">
-                <option disabled={true}>Type</option>
-                <option>Crimson</option>
-                <option>Amber</option>
-                <option>Velvet</option>
+              <select
+                required
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+                name="difficulty"
+                className={`select cursor-pointer select-lg w-full ${
+                  difficulty == "" ? "text-black/50" : "text-black"
+                }`}
+              >
+                <option value="" disabled={true}>
+                  Difficulty:
+                </option>
+                <option className="text-black" value="easy">
+                  Easy
+                </option>
+                <option className="text-black" value="medium">
+                  Medium
+                </option>
+                <option className="text-black" value="hard">
+                  Hard
+                </option>
               </select>
 
-              <label className="input input-lg w-full">
-                <span className="label">Publish date</span>
+              <label className="input input-lg w-full cursor-pointer">
+                <span className="label">Due date:</span>
                 {/* <input type="date" /> */}
                 <DatePicker
-                  isClearable
+                  required
+                  name="dueDate"
                   dateFormat="dd/MM/yyyy"
                   withPortal
-                  shouldCloseOnSelect={true}
+                  shouldCloseOnSelect
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
+                  className="cursor-pointer"
                 />
               </label>
 
               <textarea
-                placeholder="Bio"
+                required
+                name="description"
+                placeholder="Description"
                 className="textarea textarea-lg col-span-2 w-full"
               ></textarea>
 
@@ -62,16 +95,23 @@ const CreateAssignment = () => {
                 <span>Marks</span>
                 <input
                   type="number"
-                  placeholder="marks"
-                  className="input input-lg w-full"
+                  name="marks"
+                  className="input input-lg"
+                  required
+                  placeholder="Marks"
+                  min="1"
+                  max="100"
+                  title="Must be between be 1 to 100"
                 />
               </label>
 
               <label className="floating-label w-full">
-                <span>Thumbnail</span>
+                <span>Thumbnail URL</span>
                 <input
+                required
+                name="thumbnailUrl"
                   type="url"
-                  placeholder="thumbnail url"
+                  placeholder="Thumbnail url"
                   className="input input-lg w-full"
                 />
               </label>
