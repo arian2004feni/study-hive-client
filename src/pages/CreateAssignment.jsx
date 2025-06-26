@@ -14,7 +14,17 @@ const CreateAssignment = () => {
     const formData = new FormData(form)
 
     const assignment = Object.fromEntries(formData.entries());
-    console.log(assignment)
+    // console.log(assignment)
+
+    fetch('http://localhost:3000/assignments', {
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(assignment)
+    })
+    .then(req=>req.json())
+    .then(res=>alert('successfull-post', res))
   }
 
   return (
@@ -41,7 +51,7 @@ const CreateAssignment = () => {
                   required
                   type="text"
                   name="title"
-                  placeholder="title"
+                  placeholder="Title"
                   className="input input-lg w-full"
                 />
               </label>
