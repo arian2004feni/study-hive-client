@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
 import Assignment from "../pages/Assignment";
+import CreateAssignment from "../pages/CreateAssignment";
 
 // const Home = lazy(() => import("../pages/Home"));
 // const Login = lazy(() => import("../pages/Login"));
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "assignment",
         element: <PrivateRouter><Assignment /></PrivateRouter>
+      },
+      {
+        path: "create-assignment",
+        element: <PrivateRouter><CreateAssignment /></PrivateRouter>
       }
     ],
   },
