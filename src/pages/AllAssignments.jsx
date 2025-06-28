@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router';
-import SingleAssignment from './SingleSingle';
+import SingleAssignment from './SingleAssignment';
 
 const AllAssignments = () => {
     const data = useLoaderData();
