@@ -5,7 +5,7 @@ import { MdFullscreen } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router";
 
-const Assignment = ({ asm }) => {
+const SingleAssignment = ({ asm }) => {
   return (
     <div className="card bg-base-300 rounded-lg w-96 shadow-sm hover-head">
       <figure className="relative">
@@ -47,4 +47,4 @@ const Assignment = ({ asm }) => {
   );
 };
 
-export default Assignment;
+export default SingleAssignment;

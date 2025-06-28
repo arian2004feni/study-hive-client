@@ -1,13 +1,11 @@
-import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router";
 import Root from "../layout/Root";
+import AllAssignments from "../pages/AllAssignments";
+import CreateAssignment from "../pages/CreateAssignment";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
-import Assignment from "../pages/Assignment";
-import CreateAssignment from "../pages/CreateAssignment";
-import AllAssignments from "../pages/AllAssignments";
 
 // const Home = lazy(() => import("../pages/Home"));
 // const Login = lazy(() => import("../pages/Login"));
@@ -41,12 +39,8 @@ const router = createBrowserRouter([
       },
       {
         path: "assignment",
-        element: (
-          <PrivateRouter>
-            <AllAssignments />
-          </PrivateRouter>
-        ),
-        loader: () => fetch('http://localhost:3000/assignments'),
+        element: <AllAssignments />,
+        loader: () => fetch("http://localhost:3000/assignments"),
       },
     ],
   },
