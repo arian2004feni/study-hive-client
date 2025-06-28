@@ -5,7 +5,6 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 @theme {
@@ -25,4 +24,12 @@
 
 a.active {
   @apply text-[#fed966] font-bold;
+}
+
+.hover-element {
+  @apply opacity-0 scale-95 translate-y-2 pointer-events-none transition-all duration-300 ease-out shadow-2xl;
+}
+
+.hover-head:hover figure .hover-element {
+  @apply opacity-100 scale-100 translate-y-0 pointer-events-auto;
 }

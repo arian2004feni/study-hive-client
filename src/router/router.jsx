@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
 import Assignment from "../pages/Assignment";
 import CreateAssignment from "../pages/CreateAssignment";
+import AllAssignments from "../pages/AllAssignments";
 
 // const Home = lazy(() => import("../pages/Home"));
 // const Login = lazy(() => import("../pages/Login"));
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
       },
       {
         path: "login",
@@ -31,13 +32,22 @@ const router = createBrowserRouter([
         Component: Register,
       },
       {
-        path: "assignment",
-        element: <PrivateRouter><Assignment /></PrivateRouter>
+        path: "create-assignment",
+        element: (
+          <PrivateRouter>
+            <CreateAssignment />
+          </PrivateRouter>
+        ),
       },
       {
-        path: "create-assignment",
-        element: <PrivateRouter><CreateAssignment /></PrivateRouter>
-      }
+        path: "assignment",
+        element: (
+          <PrivateRouter>
+            <AllAssignments />
+          </PrivateRouter>
+        ),
+        loader: () => fetch('http://localhost:3000/assignments'),
+      },
     ],
   },
   {
