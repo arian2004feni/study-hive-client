@@ -1,8 +1,74 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
+import { AuthContext } from "../AuthContext/AuthContext";
+import axios from "axios";
 
 const ViewAssignments = () => {
   const asm = useLoaderData();
+  const { user } = use(AuthContext);
+  const [mySubmission, setMySubmission] = useState(null);
+
+  useEffect(() => {
+    if (!user?.email) return;
+    axios
+      .get(
+        `http://localhost:3000/submittedAssignments?examineeEmail=${user.email}`
+      )
+      .then((res) => {
+        const data = res.data;
+        const isThisSubmitted = data.find((t) => t.asmId === asm._id);
+        setMySubmission(isThisSubmitted || null);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [user?.email, asm._id]);
+
+  const handleAsmSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const docUrl = form.docUrl.value;
+    const note = form.note.value;
+    const status = "pending";
+    const examineeEmail = user.email;
+    const examineeName = user.displayName;
+    const asmId = asm._id;
+    const title = asm.title;
+    const marks = asm.marks;
+    const obtainedMarks = undefined;
+    const feedback = undefined;
+
+    const submissionInfo = {
+      docUrl,
+      note,
+      status,
+      examineeEmail,
+      examineeName,
+      asmId,
+      title,
+      marks,
+      obtainedMarks,
+      feedback,
+    };
+
+    if (!mySubmission) {
+      axios
+        .post("http://localhost:3000/submittedAssignments", submissionInfo)
+        .then((res) => {
+          console.log(res.data);
+          alert("success");
+          setMySubmission(res.data); // Optionally update state after submit
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("error");
+        });
+    } else {
+      alert("You have already submitted this assignment.");
+    }
+  };
+
   return (
     <div className="py-20">
       <div className="card mx-auto bg-base-300 w-2xl shadow-sm p-8">
@@ -53,28 +119,29 @@ const ViewAssignments = () => {
                 </button>
               </form>
               <h3 className="font-bold text-lg text-center">{asm.title}</h3>
-              <form className="mt-8 flex flex-col gap-4">
+              <form
+                onSubmit={handleAsmSubmit}
+                className="mt-8 flex flex-col gap-4"
+              >
                 <label className="floating-label w-full">
                   <span>Google Docs link</span>
                   <input
                     required
                     type="text"
-                    name="asmUrl"
+                    name="docUrl"
                     placeholder="Google Docs link"
                     className="input input-lg w-full"
                   />
                 </label>
                 <textarea
-                required
-                name="note"
-                placeholder="Quick note"
-                className="textarea textarea-lg w-full h-32"
-              ></textarea>
-              <button
-            className="btn btn-lg bg-main text-heading btn-wide mx-auto"
-          >
-            Submit
-          </button>
+                  required
+                  name="note"
+                  placeholder="Quick note"
+                  className="textarea textarea-lg w-full h-32"
+                ></textarea>
+                <button className="btn btn-lg bg-main text-heading btn-wide mx-auto">
+                  Submit
+                </button>
               </form>
             </div>
             <form method="dialog" className="modal-backdrop">
