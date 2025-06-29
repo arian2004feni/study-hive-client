@@ -10,6 +10,7 @@ import ViewAssignments from "../pages/ViewAssignments";
 import UpdateAssignment from "../pages/UpdateAssignment";
 import MySubmission from "../pages/MySubmission";
 import PendingAsm from "../pages/PendingAsm";
+import { SubmittedAssignmentsLoader } from "./submittedAssignmentsLoader";
 
 // const Home = lazy(() => import("../pages/Home"));
 // const Login = lazy(() => import("../pages/Login"));
@@ -73,10 +74,7 @@ const router = createBrowserRouter([
             <MySubmission />
           </PrivateRouter>
         ),
-        loader: ({ params }) =>
-          fetch(
-            `http://localhost:3000/submittedAssignments?examineeEmail=${params.email}`
-          ),
+        loader: SubmittedAssignmentsLoader,
       },
       {
         path: "all-pending-submission",
@@ -86,9 +84,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: () =>
-          fetch(
-            'http://localhost:3000/submittedAssignments?status=pending'
-          ),
+          fetch("http://localhost:3000/submittedAssignments?status=pending"),
       },
     ],
   },

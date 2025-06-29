@@ -82,7 +82,7 @@ const PendingAsm = () => {
               onSubmit={(e) => handleSubmitMarks(e, asm._id)}
               className="fieldset rounded-box p-4 mt-4"
             >
-              <label className="floating-label w-full">
+              <label className="floating-label mb-2 w-full">
                 <span>Assign Marks</span>
                 <input
                   type="number"
