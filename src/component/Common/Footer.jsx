@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaMapLocationDot, FaTwitter } from "react-icons/fa6";
+import logo from '../../assets/logo.png'
 import { IoMdMail } from "react-icons/io";
 import { MdOutlinePhoneInTalk } from "react-icons/md";
 
@@ -8,7 +9,7 @@ const Footer = () => {
     <footer className="bg-gray-200">
       <div className="footer sm:footer-horizontal justify-center xl:max-w-10/12 max-lg:container mx-auto text-base-content p-10 gap-10 md:gap-20">
         <aside className="flex mx-auto flex-col items-center bg-white p-6 rounded-lg shadow-lg">
-          <img src="src/assets/logo.png" alt="logo" className="rotate-90 w-14" />
+          <img src={logo} alt="logo" className="rotate-90 w-14" />
           <div>
             <h3 className="text-center text-lg font-bold">Study-Hive</h3>
             <br />

@@ -6,6 +6,8 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
+import ViewAssignments from "../pages/ViewAssignments";
+import UpdateAssignment from "../pages/UpdateAssignment";
 
 // const Home = lazy(() => import("../pages/Home"));
 // const Login = lazy(() => import("../pages/Login"));
@@ -41,6 +43,24 @@ const router = createBrowserRouter([
         path: "assignment",
         element: <AllAssignments />,
         loader: () => fetch("http://localhost:3000/assignments"),
+      },
+      {
+        path: "assignment/:id",
+        element: (
+          <PrivateRouter>
+            <ViewAssignments />
+          </PrivateRouter>
+        ),
+        loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
+      },
+      {
+        path: "assignment/:id/update",
+        element: (
+          <PrivateRouter>
+            <UpdateAssignment />
+          </PrivateRouter>
+        ),
+        loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
       },
     ],
   },

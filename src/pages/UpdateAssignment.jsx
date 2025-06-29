@@ -1,34 +1,48 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../AuthContext/AuthContext";
+import { useLoaderData } from "react-router";
+import axios from "axios";
+import { parse } from "date-fns";
 
-const CreateAssignment = () => {
-  const {user} = use(AuthContext);
+const UpdateAssignment = () => {
+  const asm = useLoaderData();
 
-  const [startDate, setStartDate] = useState("");
-  const [difficulty, setDifficulty] = useState("");
+  //   const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(() =>
+    asm.dueDate ? parse(asm.dueDate, "dd/MM/yyyy", new Date()) : null
+  );
+  const [difficulty, setDifficulty] = useState(asm.difficulty);
 
-  const handleCreateAsm = (e) => {
-    e.preventDefault()
+  const handleCreateAsm = async (e) => {
+    e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
-    const assignment = Object.fromEntries(formData.entries());
-    assignment.email = user.email;
-    console.log(assignment)
 
-    fetch('http://localhost:3000/assignments', {
-      method: 'POST',
-      headers: {
-        'content-type' : 'application/json'
-      },
-      body: JSON.stringify(assignment)
-    })
-    .then(req=>req.json())
-    .then(res=>alert('successfull-post', res))
-  }
+    const assignment = Object.fromEntries(formData.entries());
+    assignment.email = asm.email;
+
+    axios
+      .put(`http://localhost:3000/assignments/${asm._id}`, assignment)
+      .then((res) => {
+        console.log(res.data);
+        if (!res.data.modifiedCount) {
+          alert("no doc changes...");
+        } else {
+          alert("success");
+        }
+      })
+      .catch((err) => alert(err));
+
+    //
+    //   alert("Assignment updated successfully!");
+    // } catch (error) {
+    //   alert("Failed to update assignment.");
+    //   console.error(error);
+    // }
+  };
 
   return (
     <section className="bg-gray-100">
@@ -36,22 +50,24 @@ const CreateAssignment = () => {
         <div className="flex flex-col gap-10 bg-white px-10 py-14 rounded-2xl">
           <div className="font-body my-auto">
             <h3 className="text-4xl font-bold text-heading text-center">
-              Create New Assignment
+              Update Assignment
             </h3>
             <p className="text-black/60 mt-6 px-8 text-center">
-              Fill out the form below to create a new assignment for your group.
-              Add a title, description, due date, and any necessary instructions
-              or resources. Once submitted, your friends will be notified and
-              can begin working on the assignment right away. Let’s make
-              learning collaborative and productive!
+              Please update the details below to modify the existing assignment.
+              Make any necessary changes and submit the form to save your
+              updates.
             </p>
           </div>
           <div className="w-full">
-            <form onSubmit={handleCreateAsm} className="grid grid-cols-2 w-full gap-6">
+            <form
+              onSubmit={handleCreateAsm}
+              className="grid grid-cols-2 w-full gap-6"
+            >
               <label className="floating-label col-span-2 w-full">
                 <span>Title</span>
                 <input
                   required
+                  defaultValue={asm.title}
                   type="text"
                   name="title"
                   placeholder="Title"
@@ -61,12 +77,10 @@ const CreateAssignment = () => {
 
               <select
                 required
-                value={difficulty}
+                defaultValue={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
                 name="difficulty"
-                className={`select cursor-pointer select-lg w-full ${
-                  difficulty == "" ? "text-black/50" : "text-black"
-                }`}
+                className="select cursor-pointer select-lg w-full text-black"
               >
                 <option value="" disabled={true}>
                   Difficulty:
@@ -89,9 +103,9 @@ const CreateAssignment = () => {
                   required
                   name="dueDate"
                   dateFormat="dd/MM/yyyy"
-                  withPortal
                   shouldCloseOnSelect
                   selected={startDate}
+                  placeholderText={asm.dueDate}
                   onChange={(date) => setStartDate(date)}
                   className="cursor-pointer"
                 />
@@ -99,6 +113,7 @@ const CreateAssignment = () => {
 
               <textarea
                 required
+                defaultValue={asm.description}
                 name="description"
                 placeholder="Description"
                 className="textarea textarea-lg col-span-2 w-full"
@@ -108,6 +123,7 @@ const CreateAssignment = () => {
                 <span>Marks</span>
                 <input
                   type="number"
+                  defaultValue={asm.marks}
                   name="marks"
                   className="input input-lg"
                   required
@@ -121,16 +137,17 @@ const CreateAssignment = () => {
               <label className="floating-label w-full">
                 <span>Thumbnail URL</span>
                 <input
-                required
-                name="thumbnailUrl"
-                  type="text"
+                  required
+                  defaultValue={asm.thumbnailUrl}
+                  name="thumbnailUrl"
+                  type="url"
                   placeholder="Thumbnail url"
                   className="input input-lg w-full"
                 />
               </label>
               <input
                 type="submit"
-                value="Create New Assignment"
+                value="Update Assignment"
                 className="btn btn-xl bg-main col-span-2"
               />
             </form>
@@ -141,4 +158,4 @@ const CreateAssignment = () => {
   );
 };
 
-export default CreateAssignment;
+export default UpdateAssignment;

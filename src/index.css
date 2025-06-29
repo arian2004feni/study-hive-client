@@ -27,7 +27,7 @@ a.active {
 }
 
 .hover-element {
-  @apply opacity-0 scale-95 translate-y-2 pointer-events-none transition-all duration-300 ease-out shadow-2xl;
+  @apply opacity-0 scale-95 translate-y-2 pointer-events-none transition-all duration-300 ease-out shadow-2xl focus:bg-red-500;
 }
 
 .hover-head:hover figure .hover-element {

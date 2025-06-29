@@ -1,0 +1,90 @@
+import React from "react";
+import { Link, useLoaderData } from "react-router";
+
+const ViewAssignments = () => {
+  const asm = useLoaderData();
+  return (
+    <div className="py-20">
+      <div className="card mx-auto bg-base-300 w-2xl shadow-sm p-8">
+        <figure>
+          <img
+            src={asm.thumbnailUrl}
+            onError={(e) =>
+              (e.target.src = "https://i.ibb.co/3mzCRjmZ/image.png")
+            }
+            alt={asm.title}
+            title={asm.title}
+            className="w-full rounded-lg"
+          />
+        </figure>
+        <div className="card-body text-heading gap-0">
+          <h2 className="card-title text-2xl">{asm.title}</h2>
+          <p className="text-lg font-medium mt-5 text-black/80">Description:</p>
+          <p className="text-black/80">{asm.description}</p>
+          <p className="text-lg mt-5 text-black/80">
+            Email:{" "}
+            <span className="text-black/80 font-medium">{asm.email}</span>
+          </p>
+
+          <p className="mt-3 text-lg text-black/80">
+            Marks: <span className="font-bold">{asm.marks}</span>
+          </p>
+          <p className="mt-3 text-lg text-black/80">
+            Due Date: <span className="font-bold">{asm.dueDate}</span>
+          </p>
+          <p className="mt-3 text-lg text-black/80">
+            Difficulty:{" "}
+            <span className="capitalize font-bold">{asm.difficulty}</span>
+          </p>
+        </div>
+        <div className="card-actions mt-5">
+          <button
+            onClick={() => document.getElementById(asm._id).showModal()}
+            className="btn btn-lg bg-main text-heading btn-wide mx-auto"
+          >
+            Take assignment
+          </button>
+          <dialog id={asm._id} className="modal">
+            <div className="modal-box">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <h3 className="font-bold text-lg text-center">{asm.title}</h3>
+              <form className="mt-8 flex flex-col gap-4">
+                <label className="floating-label w-full">
+                  <span>Google Docs link</span>
+                  <input
+                    required
+                    type="text"
+                    name="asmUrl"
+                    placeholder="Google Docs link"
+                    className="input input-lg w-full"
+                  />
+                </label>
+                <textarea
+                required
+                name="note"
+                placeholder="Quick note"
+                className="textarea textarea-lg w-full h-32"
+              ></textarea>
+              <button
+            className="btn btn-lg bg-main text-heading btn-wide mx-auto"
+          >
+            Submit
+          </button>
+              </form>
+            </div>
+            <form method="dialog" className="modal-backdrop">
+              <button>close</button>
+            </form>
+          </dialog>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ViewAssignments;

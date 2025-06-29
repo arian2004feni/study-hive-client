@@ -1,28 +1,33 @@
-import React from "react";
-import { CiViewList } from "react-icons/ci";
 import { FiEdit } from "react-icons/fi";
 import { MdFullscreen } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router";
 
-const SingleAssignment = ({ asm }) => {
+const SingleAssignment = ({ asm , handleDelete}) => {
+
   return (
-    <div className="card bg-base-300 rounded-lg w-96 shadow-sm hover-head">
+    <div className="card mx-auto bg-base-300 rounded-lg shadow-sm max-w-sm hover-head">
       <figure className="relative">
         <img
           src={asm.thumbnailUrl}
+          onError={(e) =>
+            (e.target.src = "https://i.ibb.co/3mzCRjmZ/image.png")
+          }
           alt={asm.title}
           title={asm.title}
-          className="w-full h-52"
+          className="w-full h-52 md:h-44 lg:h-48 xl:h-52"
         />
-        <div className="bg-base-100 flex gap-1 absolute bottom-1 right-1 text-2xl p-2 rounded hover-element">
-          <Link>
+        <div className="bg-base-100 flex gap-1 absolute bottom-1 right-1 text-3xl p-2 rounded hover-element">
+          <Link to={`/assignment/${asm._id}`}>
             <MdFullscreen className="bg-primary text-base-100 rounded p-[2px]" />
           </Link>
-          <Link>
+          <Link to={`/assignment/${asm._id}/update`}>
             <FiEdit className="bg-info text-white rounded p-1" />
           </Link>
-          <RiDeleteBin6Line className="bg-warning text-base-100 rounded p-1 cursor-pointer" />
+          <RiDeleteBin6Line
+            onClick={() => handleDelete(asm)}
+            className="bg-warning text-base-100 rounded p-1 cursor-pointer"
+          />
         </div>
       </figure>
       <div className="card-body">
