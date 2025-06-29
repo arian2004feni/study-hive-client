@@ -106,7 +106,7 @@ const Navbar = () => {
                     <Link to="/create-assignment">Create Assignments</Link>
                   </li>
                   <li>
-                    <Link to="/">My Attempted Assignments</Link>
+                    <Link to={`/assignment/my-submission/${user?.email}`}>My Attempted Assignments</Link>
                   </li>
                 </ul>
               </div>

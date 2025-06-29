@@ -36,8 +36,8 @@ const ViewAssignments = () => {
     const asmId = asm._id;
     const title = asm.title;
     const marks = asm.marks;
-    const obtainedMarks = undefined;
-    const feedback = undefined;
+    const obtainedMarks = null;
+    const feedback = null;
 
     const submissionInfo = {
       docUrl,

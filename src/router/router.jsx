@@ -65,6 +65,18 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/assignments/${params.id}`),
       },
+      {
+        path: "assignment/my-submission/:email",
+        element: (
+          <PrivateRouter>
+            <MySubmission />
+          </PrivateRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:3000/submittedAssignments?examineeEmail=${params.email}`
+          ),
+      },
     ],
   },
   {
