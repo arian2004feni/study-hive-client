@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import React, { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,6 +9,9 @@ import { parse } from "date-fns";
 
 const UpdateAssignment = () => {
   const asm = useLoaderData();
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   //   const [startDate, setStartDate] = useState(new Date());
   const [startDate, setStartDate] = useState(() =>
@@ -46,7 +50,13 @@ const UpdateAssignment = () => {
 
   return (
     <section className="bg-gray-100">
-      <div className="min-h-screen max-w-3xl px-6 mx-auto py-24">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="min-h-screen max-w-3xl px-6 mx-auto py-24"
+      >
         <div className="flex flex-col gap-10 bg-white px-10 py-14 rounded-2xl">
           <div className="font-body my-auto">
             <h3 className="text-4xl font-bold text-heading text-center">
@@ -153,7 +163,7 @@ const UpdateAssignment = () => {
             </form>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

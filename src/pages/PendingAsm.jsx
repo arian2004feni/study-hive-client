@@ -1,8 +1,11 @@
 import axios from "axios";
-import React from "react";
+import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 import { useLoaderData } from "react-router";
 
 const PendingAsm = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
   const data = useLoaderData();
   //   console.log(data);
 
@@ -25,7 +28,13 @@ const PendingAsm = () => {
   };
 
   return (
-    <div className="xl:max-w-10/12 max-lg:max-w-10/12 px-6 max-lg:container mx-auto py-20">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.6 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="xl:max-w-10/12 max-lg:max-w-10/12 px-6 max-lg:container mx-auto py-20"
+    >
       <div className="text-4xl text-center text-heading/75 font-bold mb-6">
         Pending Assignments
       </div>
@@ -73,7 +82,11 @@ const PendingAsm = () => {
             </form>
             <h3 className="font-bold text-center text-lg">Assign Mark</h3>
             <p className="py-4 font-bold mt-6">Google Doc Link:</p>
-            <a href={asm.docUrl} target="_blank" className="link link-hover break-words">
+            <a
+              href={asm.docUrl}
+              target="_blank"
+              className="link link-hover break-words"
+            >
               {asm.docUrl}
             </a>
             <p className="py-4 font-bold mt-4">Note:</p>
@@ -113,7 +126,7 @@ const PendingAsm = () => {
           </form>
         </dialog>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

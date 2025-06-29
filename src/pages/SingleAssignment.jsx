@@ -1,12 +1,21 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { FiEdit } from "react-icons/fi";
 import { MdFullscreen } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router";
 
-const SingleAssignment = ({ asm , handleDelete}) => {
-
+const SingleAssignment = ({ asm, handleDelete }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
   return (
-    <div className="card mx-auto bg-base-300 rounded-lg shadow-sm max-w-sm hover-head">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 150 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="card mx-auto bg-base-300 rounded-lg shadow-sm max-w-sm hover-head"
+    >
       <figure className="relative">
         <img
           src={asm.thumbnailUrl}
@@ -48,7 +57,7 @@ const SingleAssignment = ({ asm , handleDelete}) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

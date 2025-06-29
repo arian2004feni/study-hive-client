@@ -1,12 +1,15 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import axios from "axios";
+import { motion, useInView } from "framer-motion";
 
 const ViewAssignments = () => {
   const asm = useLoaderData();
   const { user } = use(AuthContext);
   const [mySubmission, setMySubmission] = useState(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (!user?.email) return;
@@ -70,7 +73,13 @@ const ViewAssignments = () => {
   };
 
   return (
-    <div className="py-20">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="py-20"
+    >
       <div className="card mx-auto bg-base-300 w-2xl shadow-sm p-8">
         <figure>
           <img
@@ -110,7 +119,10 @@ const ViewAssignments = () => {
           >
             Take assignment
           </button>
-          <dialog id={asm._id} className="modal">
+          <dialog
+            id={asm._id}
+            className="modal"
+          >
             <div className="modal-box">
               <form method="dialog">
                 {/* if there is a button in form, it will close the modal */}
@@ -150,7 +162,7 @@ const ViewAssignments = () => {
           </dialog>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

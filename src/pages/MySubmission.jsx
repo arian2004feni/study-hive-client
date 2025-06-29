@@ -1,13 +1,23 @@
-import React from "react";
+import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 import { useLoaderData } from "react-router";
 
 const MySubmission = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
   const data = useLoaderData();
   console.log(data);
   return (
-    <div className="xl:max-w-10/12 max-lg:max-w-10/12 px-6 max-lg:container mx-auto py-20">
-
-      <div className="text-4xl text-center text-heading/75 font-bold mb-6">My Submission</div>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.6 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="xl:max-w-10/12 max-lg:max-w-10/12 px-6 max-lg:container mx-auto py-20"
+    >
+      <div className="text-4xl text-center text-heading/75 font-bold mb-6">
+        My Submission
+      </div>
 
       <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table className="table text-center lg:table-md sm:table-sm table-xs">
@@ -28,17 +38,27 @@ const MySubmission = () => {
                 <th>{i + 1}</th>
                 <td className="text-left">{asm.title}</td>
                 <td className="hidden sm:table-cell capitalize">
-                  <span className={`badge badge-xs sm:badge-sm lg:badge-md badge-soft ${asm.status == 'pending' ? 'badge-warning' : 'badge-success'}`}>{asm.status}</span>
+                  <span
+                    className={`badge badge-xs sm:badge-sm lg:badge-md badge-soft ${
+                      asm.status == "pending"
+                        ? "badge-warning"
+                        : "badge-success"
+                    }`}
+                  >
+                    {asm.status}
+                  </span>
                 </td>
                 <td>{asm.marks}</td>
                 <td>{asm.obtainedMarks !== null ? asm.obtainedMarks : "-"}</td>
-                <td className="hidden md:table-cell">{asm.feedback !== null ? asm.feedback : "-"}</td>
+                <td className="hidden md:table-cell">
+                  {asm.feedback !== null ? asm.feedback : "-"}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
