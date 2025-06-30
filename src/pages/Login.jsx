@@ -1,12 +1,12 @@
 import { use } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import logo from "../assets/logo.png";
 import Google from "../component/Google";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInUser, setLoading } = use(AuthContext);
+  const { signInUser, setLoading, user } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,6 +38,10 @@ const Login = () => {
         });
       });
   };
+
+  if(user){
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100">

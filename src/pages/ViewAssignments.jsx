@@ -91,6 +91,7 @@ const ViewAssignments = () => {
             icon: "warning",
           });
         } else {
+          modalRef.current.close();
           Swal.fire({
             title: "Error!",
             text: "Can't save file.",
@@ -98,11 +99,6 @@ const ViewAssignments = () => {
           });
         }
       });
-    Swal.fire({
-      title: "Error!",
-      text: "Already Submitted Assignment.",
-      icon: "error",
-    });
   };
 
   return (

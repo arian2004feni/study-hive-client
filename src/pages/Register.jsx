@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { updateProfile } from "firebase/auth";
 import logo from "../assets/logo.png";
@@ -7,7 +7,7 @@ import Google from "../component/Google";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { registerUser, setLoading } = use(AuthContext);
+  const { registerUser, setLoading, user } = use(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = (event) => {
@@ -61,6 +61,10 @@ const Register = () => {
         setLoading(false);
       });
   };
+
+  if(user){
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100">
