@@ -3,12 +3,14 @@ import React, { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import axios from "axios";
 import { parse } from "date-fns";
+import Swal from "sweetalert2";
 
 const UpdateAssignment = () => {
   const asm = useLoaderData();
+  const navigate = useNavigate();
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -33,9 +35,20 @@ const UpdateAssignment = () => {
       .then((res) => {
         console.log(res.data);
         if (!res.data.modifiedCount) {
-          alert("no doc changes...");
+          Swal.fire({
+            title: "No changes..",
+            icon: "error",
+          });
         } else {
-          alert("success");
+          Swal.fire({
+            title: "Updated Successfully",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          setTimeout(()=>{
+            navigate('/assignment')
+          }, 1000)
         }
       })
       .catch((err) => alert(err));
@@ -55,14 +68,14 @@ const UpdateAssignment = () => {
         initial={{ opacity: 0, scale: 0.6 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="min-h-screen max-w-3xl px-6 mx-auto py-24"
+        className="min-h-screen max-w-3xl px-6 mx-auto py-10 sm:py-20 md:py-24"
       >
         <div className="flex flex-col gap-10 bg-white px-10 py-14 rounded-2xl">
           <div className="font-body my-auto">
-            <h3 className="text-4xl font-bold text-heading text-center">
+            <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-heading text-center">
               Update Assignment
             </h3>
-            <p className="text-black/60 mt-6 px-8 text-center">
+            <p className="text-black/60 mt-2 sm:mt-6 px-8 text-center text-sm sm:text-base">
               Please update the details below to modify the existing assignment.
               Make any necessary changes and submit the form to save your
               updates.
@@ -81,7 +94,7 @@ const UpdateAssignment = () => {
                   type="text"
                   name="title"
                   placeholder="Title"
-                  className="input input-lg w-full"
+                  className="input input-sm sm:input-md md:input-lg w-full"
                 />
               </label>
 
@@ -90,7 +103,7 @@ const UpdateAssignment = () => {
                 defaultValue={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
                 name="difficulty"
-                className="select cursor-pointer select-lg w-full text-black"
+                className="select cursor-pointer select-sm sm:select-md md:select-lg w-full text-black"
               >
                 <option value="" disabled={true}>
                   Difficulty:
@@ -106,7 +119,7 @@ const UpdateAssignment = () => {
                 </option>
               </select>
 
-              <label className="input input-lg w-full cursor-pointer">
+              <label className="input input-sm sm:input-md md:input-lg w-full cursor-pointer">
                 <span className="label">Due date:</span>
                 {/* <input type="date" /> */}
                 <DatePicker
@@ -126,7 +139,7 @@ const UpdateAssignment = () => {
                 defaultValue={asm.description}
                 name="description"
                 placeholder="Description"
-                className="textarea textarea-lg col-span-2 w-full"
+                className="textarea textarea-sm sm:textarea-md md:textarea-lg col-span-2 w-full"
               ></textarea>
 
               <label className="floating-label w-full">
@@ -135,7 +148,7 @@ const UpdateAssignment = () => {
                   type="number"
                   defaultValue={asm.marks}
                   name="marks"
-                  className="input input-lg"
+                  className="input input-sm sm:input-md md:input-lg"
                   required
                   placeholder="Marks"
                   min="1"
@@ -152,13 +165,13 @@ const UpdateAssignment = () => {
                   name="thumbnailUrl"
                   type="url"
                   placeholder="Thumbnail url"
-                  className="input input-lg w-full"
+                  className="input input-sm sm:input-md md:input-lg w-full"
                 />
               </label>
               <input
                 type="submit"
                 value="Update Assignment"
-                className="btn btn-xl bg-main col-span-2"
+                className="btn md:btn-lg lg:btn-xl bg-main col-span-2"
               />
             </form>
           </div>

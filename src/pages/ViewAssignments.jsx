@@ -1,27 +1,32 @@
-import React, { use, useEffect, useRef, useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import React, { use, useEffect, useRef } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import axios from "axios";
 import { motion, useInView } from "framer-motion";
+import Swal from "sweetalert2";
 
 const ViewAssignments = () => {
   const asm = useLoaderData();
   const { user } = use(AuthContext);
-  const [mySubmission, setMySubmission] = useState(null);
+  const navigate = useNavigate();
+
   const ref = useRef(null);
+  const modalRef = useRef();
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (!user?.email) return;
+    const token = localStorage.getItem("access-token");
     axios
       .get(
-        `http://localhost:3000/submittedAssignments?examineeEmail=${user.email}`
+        `http://localhost:3000/submittedAssignments?examineeEmail=${user?.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
-      .then((res) => {
-        const data = res.data;
-        const isThisSubmitted = data.find((t) => t.asmId === asm._id);
-        setMySubmission(isThisSubmitted || null);
-      })
+      .then(() => {})
       .catch((err) => {
         console.error(err);
       });
@@ -55,21 +60,49 @@ const ViewAssignments = () => {
       feedback,
     };
 
-    if (!mySubmission) {
-      axios
-        .post("http://localhost:3000/submittedAssignments", submissionInfo)
-        .then((res) => {
-          console.log(res.data);
-          alert("success");
-          setMySubmission(res.data); // Optionally update state after submit
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("error");
+    const token = localStorage.getItem("access-token");
+    axios
+      .post("http://localhost:3000/submittedAssignments", submissionInfo, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        modalRef.current.close();
+        Swal.fire({
+          title: "Successful!",
+          text: "Your file has been submitted.",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
         });
-    } else {
-      alert("You have already submitted this assignment.");
-    }
+        setTimeout(() => {
+          navigate("/all-pending-submission");
+        }, 1000);
+      })
+      .catch((err) => {
+        console.error(err);
+        modalRef.current.close();
+        if (err.response?.status === 409) {
+          Swal.fire({
+            title: "Already Submitted",
+            text: "You have already submitted this assignment.",
+            icon: "warning",
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Can't save file.",
+            icon: "error",
+          });
+        }
+      });
+    Swal.fire({
+      title: "Error!",
+      text: "Already Submitted Assignment.",
+      icon: "error",
+    });
   };
 
   return (
@@ -78,9 +111,9 @@ const ViewAssignments = () => {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="py-20"
+      className="py-10 sm:py-14 md:py-16 lg:py-20 px-6"
     >
-      <div className="card mx-auto bg-base-300 w-2xl shadow-sm p-8">
+      <div className="card max-w-lg md:max-w-xl lg:max-w-2xl px-6 mx-auto bg-base-300 shadow-sm p-8">
         <figure>
           <img
             src={asm.thumbnailUrl}
@@ -119,10 +152,7 @@ const ViewAssignments = () => {
           >
             Take assignment
           </button>
-          <dialog
-            id={asm._id}
-            className="modal"
-          >
+          <dialog ref={modalRef} id={asm._id} className="modal">
             <div className="modal-box">
               <form method="dialog">
                 {/* if there is a button in form, it will close the modal */}

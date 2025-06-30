@@ -4,9 +4,13 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../AuthContext/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const CreateAssignment = () => {
   const { user } = use(AuthContext);
+  const navigate = useNavigate();
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -23,15 +27,28 @@ const CreateAssignment = () => {
     assignment.email = user.email;
     console.log(assignment);
 
-    fetch("http://localhost:3000/assignments", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(assignment),
-    })
-      .then((req) => req.json())
-      .then((res) => alert("successfull-post", res));
+    axios
+      .post("http://localhost:3000/assignments", assignment)
+      .then(() => {
+        Swal.fire({
+          title: "Successful!",
+          text: "Your file has been Saved.",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        setTimeout(() => {
+          navigate("/assignment");
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          title: "error!",
+          text: "can't save your file.",
+          icon: "error",
+        });
+      });
   };
 
   return (
@@ -41,14 +58,14 @@ const CreateAssignment = () => {
         initial={{ opacity: 0, scale: 0.6 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="min-h-screen max-w-3xl px-6 mx-auto py-24"
+        className="min-h-screen max-w-3xl px-6 mx-auto py-12 sm:py-20 md:py-24 "
       >
         <div className="flex flex-col gap-10 bg-white px-10 py-14 rounded-2xl">
           <div className="font-body my-auto">
-            <h3 className="text-4xl font-bold text-heading text-center">
+            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-heading text-center">
               Create New Assignment
             </h3>
-            <p className="text-black/60 mt-6 px-8 text-center">
+            <p className="text-black/60 mt-6 text-xs sm:text-sm md:text-base sm:px-8 text-center">
               Fill out the form below to create a new assignment for your group.
               Add a title, description, due date, and any necessary instructions
               or resources. Once submitted, your friends will be notified and
@@ -68,7 +85,7 @@ const CreateAssignment = () => {
                   type="text"
                   name="title"
                   placeholder="Title"
-                  className="input input-lg w-full"
+                  className="input input-sm sm:input-md md:input-lg w-full"
                 />
               </label>
 
@@ -77,7 +94,7 @@ const CreateAssignment = () => {
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
                 name="difficulty"
-                className={`select cursor-pointer select-lg w-full ${
+                className={`select cursor-pointer select-sm sm:select-md md:select-lg w-full ${
                   difficulty == "" ? "text-black/50" : "text-black"
                 }`}
               >
@@ -95,7 +112,7 @@ const CreateAssignment = () => {
                 </option>
               </select>
 
-              <label className="input input-lg w-full cursor-pointer">
+              <label className="input input-sm sm:input-md md:input-lg w-full cursor-pointer">
                 <span className="label">Due date:</span>
                 {/* <input type="date" /> */}
                 <DatePicker
@@ -114,7 +131,7 @@ const CreateAssignment = () => {
                 required
                 name="description"
                 placeholder="Description"
-                className="textarea textarea-lg col-span-2 w-full"
+                className="textarea textarea-sm sm:textarea-md md:textarea-lg col-span-2 w-full"
               ></textarea>
 
               <label className="floating-label w-full">
@@ -122,7 +139,7 @@ const CreateAssignment = () => {
                 <input
                   type="number"
                   name="marks"
-                  className="input input-lg"
+                  className="input input-sm sm:input-md md:input-lg"
                   required
                   placeholder="Marks"
                   min="1"
@@ -138,13 +155,13 @@ const CreateAssignment = () => {
                   name="thumbnailUrl"
                   type="text"
                   placeholder="Thumbnail url"
-                  className="input input-lg w-full"
+                  className="input input-sm sm:input-md md:input-lg w-full"
                 />
               </label>
               <input
                 type="submit"
                 value="Create New Assignment"
-                className="btn btn-xl bg-main col-span-2"
+                className="btn md:btn-lg lg:btn-xl bg-main col-span-2"
               />
             </form>
           </div>

@@ -1,4 +1,5 @@
 import { motion, useInView } from "framer-motion";
+import { BsDatabaseFillX } from "react-icons/bs";
 import React, { useRef } from "react";
 import { useLoaderData } from "react-router";
 
@@ -6,7 +7,6 @@ const MySubmission = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const data = useLoaderData();
-  console.log(data);
   return (
     <motion.div
       ref={ref}
@@ -15,11 +15,12 @@ const MySubmission = () => {
       transition={{ duration: 1, ease: "easeOut" }}
       className="xl:max-w-10/12 max-lg:max-w-10/12 px-6 max-lg:container mx-auto py-20"
     >
-      <div className="text-4xl text-center text-heading/75 font-bold mb-6">
+      <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center text-heading/75 font-bold mb-6">
         My Submission
       </div>
 
-      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+      {
+        data.length > 0 ? <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table className="table text-center lg:table-md sm:table-sm table-xs">
           {/* head */}
           <thead>
@@ -57,7 +58,8 @@ const MySubmission = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> : <div className="flex flex-col gap-5 p-10 rounded-2xl justify-center items-center bg-base-300 max-w-sm mx-auto text-2xl font-bold">No Data found <br /> <BsDatabaseFillX className="text-5xl" /></div>
+      }
     </motion.div>
   );
 };

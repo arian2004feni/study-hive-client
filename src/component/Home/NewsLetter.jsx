@@ -6,7 +6,7 @@ const NewsLetter = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   return (
-    <section className="flex flex-col lg:flex-row xl:max-w-10/12 max-lg:container mx-auto my-16 gap-8 p-6 rounded-lg">
+    <section className="flex flex-col lg:flex-row xl:max-w-10/12 max-lg:container mx-auto my-16 gap-8 p-6 rounded-lg overflow-x-hidden">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, x: -200 }}
@@ -15,20 +15,20 @@ const NewsLetter = () => {
         className="flex-1 flex bg-heading/90 text-white pl-8 rounded"
       >
         <div className="font-body my-auto pt-8">
-          <h3 className="font-bold text-3xl mb-4">
+          <h3 className="font-bold text-xl sm:text-3xl mb-2 sm:mb-4">
             Built by Students, for Students
           </h3>
-          <p className="text-lg mb-6">
+          <p className="sm:text-lg mb-6">
             We built this app with one goal in mind: make group study fun,
             productive, and meaningful. Whether it's sharing assignments, or
             grading each other's.
           </p>
         </div>
-        <div className="flex-shrink-0 lg:w-52 md:w-72 sm:w-64 w-52 relative">
+        <div className="flex-shrink-0 lg:w-52 md:w-72 sm:w-64 w-32 relative">
           <img
             src={man}
             alt="man"
-            className="lg:h-72 md:h-72 sm:h-80 bottom-0 left-0 absolute"
+            className="lg:h-72 md:h-72 sm:h-80 h-44 bottom-0 left-0 absolute"
           />
         </div>
       </motion.div>
@@ -40,10 +40,10 @@ const NewsLetter = () => {
         className="flex-1 flex flex-col justify-center bg-main text-heading p-8 rounded"
       >
         <div className="font-body">
-          <h3 className="font-bold text-3xl mb-4">
+          <h3 className="font-bold text-xl sm:text-3xl mb-4">
             More Than Just Assignments
           </h3>
-          <p className="text-lg mb-6">
+          <p className="sm:text-lg mb-6">
             Join our community of learners and stay updated with the latest
             features, tips, and resources.
           </p>
@@ -55,10 +55,10 @@ const NewsLetter = () => {
           <div className="join w-full">
             <input
               type="text"
-              className="input border-none focus:outline-none focus:shadow-none input-lg w-full join-item"
+              className="input border-none focus:outline-none focus:shadow-none sm:input-lg w-full join-item"
               placeholder="Email Address"
             />
-            <button className="btn bg-heading rounded-lg text-white btn-xl join-item text-lg">
+            <button className="btn bg-heading rounded-lg text-white sm:btn-xl join-item sm:text-lg">
               Subscribe
             </button>
           </div>

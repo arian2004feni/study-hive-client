@@ -3,9 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import logo from "../assets/logo.png";
 import Google from "../component/Google";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInUser } = use(AuthContext);
+  const { signInUser, setLoading } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -17,13 +18,24 @@ const Login = () => {
     // console.log(email, password);
 
     signInUser(email, password)
-      .then((res) => {
-        const user = res.user;
-        alert("User signed in successfully:", user);
-        navigate(location?.state || "/");
+      .then(() => {
+        setLoading(false);
+        Swal.fire({
+          title: "Login successful",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        setTimeout(() => {
+          navigate(location?.state || "/");
+        }, 1000);
       })
-      .catch((error) => {
-        alert("Error signing in user:", error);
+      .catch(() => {
+        setLoading(false);
+        Swal.fire({
+          title: "Failed to Login",
+          icon: "error",
+        });
       });
   };
 

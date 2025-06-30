@@ -1,12 +1,14 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { updateProfile } from "firebase/auth";
 import logo from "../assets/logo.png";
 import Google from "../component/Google";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const { registerUser } = use(AuthContext);
+  const { registerUser, setLoading } = use(AuthContext);
+  const navigate = useNavigate();
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -22,7 +24,8 @@ const Register = () => {
       .then((res) => {
         const user = res.user;
         console.log("User registered successfully:", user);
-        // update user's profile with username and photoURL here
+
+        setLoading(false);
 
         const profile = {
           displayName: username,
@@ -31,14 +34,31 @@ const Register = () => {
 
         updateProfile(user, profile)
           .then(() => {
-            console.log("User profile updated successfully");
+            setLoading(false);
+            Swal.fire({
+              title: "Successfully sign in",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+            setTimeout(() => {
+              navigate(location?.state || '/')
+            }, 1000);
           })
-          .catch((error) => {
-            console.error("Error updating user profile:", error);
+          .catch(() => {
+            setLoading(false);
+            Swal.fire({
+              title: "Sign in failed",
+              icon: "error",
+            });
           });
       })
-      .catch((error) => {
-        console.error("Error registering user:", error);
+      .catch(() => {
+        Swal.fire({
+          title: "Sign in failed",
+          icon: "error",
+        });
+        setLoading(false);
       });
   };
 

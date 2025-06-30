@@ -7,7 +7,7 @@ const Testimonials = () => {
         <h1 className="text-center text-heading">
           &mdash; Testimonials &mdash;
         </h1>
-        <h3 className="text-center text-heading text-5xl font-bold mb-4">
+        <h3 className="text-center text-heading text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
           What Our Users Say
         </h3>
 

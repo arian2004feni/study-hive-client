@@ -13,7 +13,7 @@ const Faq = () => {
       className="bg-gray-200 py-16"
     >
       <div className="xl:max-w-10/12 max-lg:container mx-auto my-16 rounded-lg z-10">
-        <h3 className="uppercase text-center text-5xl text-black/80 font-medium mb-4">
+        <h3 className="uppercase text-center text-2xl sm:text-3xl md:text-4xl text-black/80 font-medium mb-4">
           Frequently Asked Questions
         </h3>
         <h1 className="text-center">&mdash; Your questions answered &mdash;</h1>

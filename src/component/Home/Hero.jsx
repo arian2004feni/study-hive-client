@@ -18,8 +18,8 @@ const Hero = () => {
           className="hero-content p-8 xl:max-w-10/12 max-lg:container mx-auto font-body text-neutral-content"
         >
           <div className="max-w-5xl">
-            <h1 className="mb-5 text-xl">Together, Grow Faster &mdash;</h1>
-            <p className="mb-5 text-5xl font-bold">
+            <h1 className="mb-5 md:text-xl">Together, Grow Faster &mdash;</h1>
+            <p className="mb-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
               Study sessions just got real. Assign, complete, and review with
               friends.
             </p>

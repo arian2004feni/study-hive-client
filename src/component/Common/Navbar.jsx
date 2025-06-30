@@ -2,17 +2,27 @@ import { use } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../AuthContext/AuthContext";
+import Swal from "sweetalert2";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser, setLoading } = use(AuthContext);
 
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
-        alert("User signed out successfully");
+        setLoading(false);
+        Swal.fire({
+          title: "Successfully Logout",
+          icon: "success",
+        });
       })
-      .catch((error) => {
-        console.error("Error signing out user:", error);
+      .catch(() => {
+        Swal.fire({
+          title: "Something is wrong",
+          icon: "error",
+        });
+        setLoading(false);
       });
   };
 
@@ -36,9 +46,9 @@ const Navbar = () => {
         <div className="navbar-start flex-0">
           <Link
             to="/"
-            className="flex items-center gap-2 text-2xl text-white font-black font-body"
+            className="flex items-center gap-2 md:text-2xl sm:text-lg text-white font-black font-body"
           >
-            <img src={logo} alt="logo" className="rotate-90 w-10 mr-2" />
+            <img src={logo} alt="logo" className="rotate-90 w-5 sm:w-7 mr-2" />
             StudyHive
           </Link>
         </div>
@@ -83,17 +93,22 @@ const Navbar = () => {
                 <div
                   tabIndex={0}
                   role="button"
+                  data-tooltip-id="user"
                   className="avatar avatar-online cursor-pointer element-head m-1 mr-2"
                 >
                   {/* <span className="element-child size-20"></span> */}
-                  <div className="w-12 rounded-full">
+                  <div className="w-8 sm:w-10 rounded-full">
                     <img
-                      src={user.photoURL}
-                      alt="profile pic"
-                      onError={(e) =>
-                        (e.target.src =
-                          "https://i.ibb.co/JX3zV4J/pngtree-vector-avatar-icon-png-image-889567-removebg-preview.png")
+                      src={
+                        user?.photoURL ||
+                        "https://i.ibb.co/JX3zV4J/pngtree-vector-avatar-icon-png-image-889567-removebg-preview.png"
                       }
+                      alt="profile pic"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src =
+                          "https://i.ibb.co/JX3zV4J/pngtree-vector-avatar-icon-png-image-889567-removebg-preview.png";
+                      }}
                     />
                   </div>
                 </div>
@@ -106,7 +121,9 @@ const Navbar = () => {
                     <Link to="/create-assignment">Create Assignments</Link>
                   </li>
                   <li>
-                    <Link to={`/submission/${user?.email}`}>My Attempted Assignments</Link>
+                    <Link to={`/submission/${user?.email}`}>
+                      My Attempted Assignments
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -124,11 +141,11 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost text-white hover:text-heading lg:hidden"
+              className="btn btn-xs sm:btn-sm btn-ghost text-white hover:text-heading lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7"
+                className="size-5 sm:size-6 md:w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -144,7 +161,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-lg dropdown-content bg-white rounded-box z-1 mt-6 w-56 text-center p-2 shadow-xl gap-2"
+              className="menu menu-md dropdown-content bg-white rounded-box z-1 mt-6 w-56 text-center p-2 shadow-xl gap-2"
             >
               {links}
               {!user ? (
@@ -152,14 +169,14 @@ const Navbar = () => {
                   <Link
                     to="/login"
                     role="button"
-                    className="btn text-white bg-heading text-lg btn-ghost mr-2"
+                    className="btn text-white bg-heading text-xs btn-ghost mr-2"
                   >
                     Login
                   </Link>
                   <Link
                     to="/register"
                     role="button"
-                    className="btn text-lg bg-main text-heading/80 btn-ghost"
+                    className="btn text-xs bg-main text-heading/80 btn-ghost"
                   >
                     Register
                   </Link>
@@ -169,7 +186,7 @@ const Navbar = () => {
                   <button
                     onClick={handleSignOut}
                     role="button"
-                    className="btn text-lg bg-main text-heading/80 btn-ghost"
+                    className="btn text-xs bg-main text-heading/80 btn-ghost"
                   >
                     Logout
                   </button>
@@ -179,6 +196,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <Tooltip id="user" className="text-center">
+        {user?.displayName} <br />
+        {user?.email}
+      </Tooltip>
     </nav>
   );
 };

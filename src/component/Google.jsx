@@ -1,21 +1,33 @@
 import React, { use } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { useLocation, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Google = () => {
-  const { signInGoogleUser } = use(AuthContext);
+  const { signInGoogleUser, setLoading } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = () => {
     signInGoogleUser()
-      .then((res) => {
-        const user = res.user;
-        console.log("User signed in successfully:", user);
-        navigate(location?.state || "/");
+      .then(() => {
+        setLoading(false);
+        Swal.fire({
+          title: "Login Successful",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setTimeout(() => {
+          navigate(location?.state || "/");
+        }, 1000);
       })
-      .catch((error) => {
-        console.error("Error signing in with Google:", error);
+      .catch(() => {
+        setLoading(false);
+        Swal.fire({
+          title: "Login Failed",
+          icon: "error",
+        });
       });
   };
 
