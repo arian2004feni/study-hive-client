@@ -4,12 +4,12 @@ import AllAssignments from "../pages/AllAssignments";
 import CreateAssignment from "../pages/CreateAssignment";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
-import PrivateRouter from "./PrivateRouter";
-import ViewAssignments from "../pages/ViewAssignments";
-import UpdateAssignment from "../pages/UpdateAssignment";
 import MySubmission from "../pages/MySubmission";
 import PendingAsm from "../pages/PendingAsm";
+import Register from "../pages/Register";
+import UpdateAssignment from "../pages/UpdateAssignment";
+import ViewAssignments from "../pages/ViewAssignments";
+import PrivateRouter from "./PrivateRouter";
 import { SubmittedAssignmentsLoader } from "./submittedAssignmentsLoader";
 
 // const Home = lazy(() => import("../pages/Home"));
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: "assignment",
         element: <AllAssignments />,
-        loader: () => fetch("http://localhost:3000/assignments"),
+        loader: () => fetch("https://study-hive-server-eight.vercel.app/assignments"),
       },
       {
         path: "assignment/:id",
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/assignments/${params.id}`),
+          fetch(`https://study-hive-server-eight.vercel.app/assignments/${params.id}`),
       },
       {
         path: "assignment/:id/update",
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/assignments/${params.id}`),
+          fetch(`https://study-hive-server-eight.vercel.app/assignments/${params.id}`),
       },
       {
         path: "submission/:email",
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: () =>
-          fetch("http://localhost:3000/submittedAssignments?status=pending"),
+          fetch("https://study-hive-server-eight.vercel.app/submittedAssignments?status=pending"),
       },
     ],
   },

@@ -1,9 +1,9 @@
-import React, { use, useEffect, useRef } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router";
-import { AuthContext } from "../AuthContext/AuthContext";
 import axios from "axios";
 import { motion, useInView } from "framer-motion";
+import { use, useEffect, useRef } from "react";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 const ViewAssignments = () => {
   const asm = useLoaderData();
@@ -19,7 +19,7 @@ const ViewAssignments = () => {
     const token = localStorage.getItem("access-token");
     axios
       .get(
-        `http://localhost:3000/submittedAssignments?examineeEmail=${user?.email}`,
+        `https://study-hive-server-eight.vercel.app/submittedAssignments?examineeEmail=${user?.email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const ViewAssignments = () => {
 
     const token = localStorage.getItem("access-token");
     axios
-      .post("http://localhost:3000/submittedAssignments", submissionInfo, {
+      .post("https://study-hive-server-eight.vercel.app/submittedAssignments", submissionInfo, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

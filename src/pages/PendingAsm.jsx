@@ -1,10 +1,10 @@
 import axios from "axios";
 import { motion, useInView } from "framer-motion";
-import React, { use, useRef } from "react";
+import { use, useRef } from "react";
+import { BsDatabaseFillX } from "react-icons/bs";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthContext/AuthContext";
-import { BsDatabaseFillX } from "react-icons/bs";
 
 const PendingAsm = () => {
   const ref = useRef(null);
@@ -25,7 +25,7 @@ const PendingAsm = () => {
 
     if (user?.email !== id.examineeEmail) {
       axios
-        .patch(`http://localhost:3000/submittedAssignments/${id._id}`, formData)
+        .patch(`https://study-hive-server-eight.vercel.app/submittedAssignments/${id._id}`, formData)
         .then((res) => {
           console.log(res.data);
           document.getElementById(id._id).close();

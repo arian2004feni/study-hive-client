@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -8,8 +7,9 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { auth } from "../firebase-init";
-import axios from "axios";
+import { AuthContext } from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
@@ -38,13 +38,13 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("User Info in useEffect", currentUser);
+      // console.log("User Info in useEffect", currentUser);
 
       setUser(currentUser);
 
       if (currentUser?.email) {
         axios
-          .post("http://localhost:3000/jwt", { email: currentUser.email })
+          .post("https://study-hive-server-eight.vercel.app/jwt", { email: currentUser.email })
           .then((res) => {
             const token = res.data.token;
             localStorage.setItem("access-token", token);

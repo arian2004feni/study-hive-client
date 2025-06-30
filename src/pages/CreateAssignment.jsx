@@ -1,12 +1,12 @@
 import { motion, useInView } from "framer-motion";
-import React, { use, useRef, useState } from "react";
+import { use, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../AuthContext/AuthContext";
 import axios from "axios";
-import Swal from "sweetalert2";
+import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 const CreateAssignment = () => {
   const { user } = use(AuthContext);
@@ -28,7 +28,7 @@ const CreateAssignment = () => {
     console.log(assignment);
 
     axios
-      .post("http://localhost:3000/assignments", assignment)
+      .post("https://study-hive-server-eight.vercel.app/assignments", assignment)
       .then(() => {
         Swal.fire({
           title: "Successful!",

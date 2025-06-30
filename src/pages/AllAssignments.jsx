@@ -1,9 +1,9 @@
-import { useLoaderData } from "react-router";
-import SingleAssignment from "./SingleAssignment";
 import axios from "axios";
-import Swal from "sweetalert2";
 import { use, useState } from "react";
+import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 import { AuthContext } from "../AuthContext/AuthContext";
+import SingleAssignment from "./SingleAssignment";
 
 const AllAssignments = () => {
   const { user } = use(AuthContext);
@@ -29,7 +29,7 @@ const AllAssignments = () => {
         if (result.isConfirmed) {
           if (user.email === asm.email) {
             axios
-              .delete(`http://localhost:3000/assignments/${asm._id}`)
+              .delete(`https://study-hive-server-eight.vercel.app/assignments/${asm._id}`)
               .then(() => {
                 const deletedAsm = data.filter((d) => d._id !== asm._id);
                 setAssignment(deletedAsm);

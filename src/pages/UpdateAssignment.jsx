@@ -1,11 +1,11 @@
 import { motion, useInView } from "framer-motion";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
-import { useLoaderData, useNavigate } from "react-router";
 import axios from "axios";
 import { parse } from "date-fns";
+import "react-datepicker/dist/react-datepicker.css";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const UpdateAssignment = () => {
@@ -31,7 +31,7 @@ const UpdateAssignment = () => {
     assignment.email = asm.email;
 
     axios
-      .put(`http://localhost:3000/assignments/${asm._id}`, assignment)
+      .put(`https://study-hive-server-eight.vercel.app/assignments/${asm._id}`, assignment)
       .then((res) => {
         console.log(res.data);
         if (!res.data.modifiedCount) {
