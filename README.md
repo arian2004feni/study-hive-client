@@ -41,23 +41,31 @@ Study-Hive is designed to simplify group study by enabling friends to:
 
 ## 📦 Used Packages
 
-### 🧩 Dependencies
-```json
-{
-  "@tailwindcss/vite": "^4.1.10",
-  "@tanstack/react-query": "^5.81.2",
-  "axios": "^1.10.0",
-  "date-fns": "^4.1.0",
-  "firebase": "^11.9.1",
-  "flatpickr": "^4.6.13",
-  "framer-motion": "^12.19.2",
-  "motion": "^12.19.1",
-  "react": "^19.1.0",
-  "react-datepicker": "^8.4.0",
-  "react-dom": "^19.1.0",
-  "react-icons": "^5.5.0",
-  "react-router": "^7.6.2",
-  "react-tooltip": "^5.29.1",
-  "sweetalert2": "^11.22.1",
-  "tailwindcss": "^4.1.10"
-}
+| #  | Package Name                     | Description (Short)                                              | Type            |
+|----|----------------------------------|------------------------------------------------------------------|-----------------|
+| 1  | `@eslint/js`                     | ESLint core config for JavaScript projects                       | Dev Dependency  |
+| 2  | `@tailwindcss/vite`             | TailwindCSS plugin for Vite-based projects                       | Dependency      |
+| 3  | `@tanstack/react-query`         | React hooks for fetching, caching, and updating data             | Dependency      |
+| 4  | `@types/react`                  | TypeScript types for React                                       | Dev Dependency  |
+| 5  | `@types/react-dom`              | TypeScript types for ReactDOM                                    | Dev Dependency  |
+| 6  | `@vitejs/plugin-react`          | Vite plugin for React support                                    | Dev Dependency  |
+| 7  | `axios`                         | Promise-based HTTP client                                        | Dependency      |
+| 8  | `daisyui`                       | Tailwind CSS component library                                   | Dev Dependency  |
+| 9  | `date-fns`                      | Modern JavaScript date utility library                           | Dependency      |
+| 10 | `eslint`                        | JavaScript linter                                                | Dev Dependency  |
+| 11 | `eslint-plugin-react-hooks`     | ESLint plugin for React Hooks rules                              | Dev Dependency  |
+| 12 | `eslint-plugin-react-refresh`   | ESLint plugin for React Refresh (Fast Refresh support)           | Dev Dependency  |
+| 13 | `firebase`                      | Firebase SDK (Auth, Firestore, etc.)                             | Dependency      |
+| 14 | `flatpickr`                     | Lightweight and powerful datetime picker                         | Dependency      |
+| 15 | `framer-motion`                 | Animation library for React                                      | Dependency      |
+| 16 | `globals`                       | List of global variables for ESLint                              | Dev Dependency  |
+| 17 | `motion`                        | Simplified version of Framer Motion (legacy/alias)               | Dependency      |
+| 18 | `react`                         | Core React library                                               | Dependency      |
+| 19 | `react-datepicker`              | A React component for selecting dates                            | Dependency      |
+| 20 | `react-dom`                     | React DOM rendering engine                                       | Dependency      |
+| 21 | `react-icons`                   | Popular icon packs as React components                           | Dependency      |
+| 22 | `react-router`                  | Routing system for React apps (v7)                               | Dependency      |
+| 23 | `react-tooltip`                 | Tooltip component for React                                      | Dependency      |
+| 24 | `sweetalert2`                   | Stylish popup alerts and modals                                  | Dependency      |
+| 25 | `tailwindcss`                   | Utility-first CSS framework                                      | Dependency      |
+| 26 | `vite`                          | Frontend build tool                                              | Dev Dependency  |
