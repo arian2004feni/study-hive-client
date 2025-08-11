@@ -58,7 +58,7 @@ const AllAssignments = () => {
 
   return (
     <div className="xl:max-w-10/12 max-lg:max-w-10/12 px-6 max-lg:container mx-auto py-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-10 gap-4">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:gap-8 gap-4">
         {assignment.map((asm) => (
           <SingleAssignment
             handleDelete={handleDelete}
