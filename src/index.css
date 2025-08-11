@@ -1,9 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: light, dark;
-}
-
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@plugin "daisyui";
 
 @theme {
   --font-body: "Rubik", sans-serif;
