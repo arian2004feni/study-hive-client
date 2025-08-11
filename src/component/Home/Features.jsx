@@ -12,7 +12,7 @@ const Features = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   return (
-    <section className="lg:max-w-10/12 max-lg:container mx-auto my-16 rounded-lg z-10 transform -translate-y-28 bg-white shadow-lg pt-10">
+    <section className="lg:max-w-10/12 max-lg:container mx-auto my-16 rounded-lg z-10 transform -translate-y-28 bg-[#fffffe] shadow-lg pt-10">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, scale: 0.4 }}
