@@ -14,14 +14,14 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
           <div className="card card_hover">
             <div className="card-body">
-              <p className="p-8 bg-gray-200 rounded-lg shadow">
+            <p className="p-8 bg-gray-100 rounded-lg shadow">
                 "StudyHive has transformed the way I study. The collaborative
                 features are amazing!"
                 
               </p>
               <div className="flex mt-4 gap-3 items-center">
                 <div className="avatar ml-8 relative">
-                    <span className="absolute rotate-45 -top-12 left-4 size-8 bg-gray-200 z-1"></span>
+                  <span className="absolute rotate-45 -top-12 left-4 size-8 bg-gray-100 z-1"></span>
                   <div className="size-16 rounded-full">
                     <img src="https://img.daisyui.com/images/profile/demo/distracted3@192.webp" />
                   </div>
@@ -37,14 +37,14 @@ const Testimonials = () => {
           </div>
           <div className="card card_hover">
             <div className="card-body">
-              <p className="p-8 bg-gray-200 rounded-lg shadow">
+            <p className="p-8 bg-gray-100 rounded-lg shadow">
                 "I love the assignment management tools. They keep me organized
                 and on track."
                 
               </p>
               <div className="flex mt-4 gap-3 ml-8 items-center">
                 <div className="avatar relative">
-                    <span className="absolute rotate-45 -top-12 size-8 left-4 bg-gray-200 z-1"></span>
+                  <span className="absolute rotate-45 -top-12 size-8 left-4 bg-gray-100 z-1"></span>
                   <div className="size-16 rounded-full">
                     <img src="https://img.daisyui.com/images/profile/demo/distracted1@192.webp" />
                   </div>
@@ -58,13 +58,13 @@ const Testimonials = () => {
           </div>
           <div className="card card_hover">
             <div className="card-body">
-              <p className="p-8 bg-gray-200 rounded-lg shadow">
+            <p className="p-8 bg-gray-100 rounded-lg shadow">
                 "The progress tracking feature is a game changer. I can see how
                 much I've accomplished."
               </p>
               <div className="flex mt-4 gap-3 ml-8 items-center">
                 <div className="avatar relative">
-                  <span className="absolute rotate-45 -top-12 left-4 size-8 bg-gray-200 z-1"></span>
+                <span className="absolute rotate-45 -top-12 left-4 size-8 bg-gray-100 z-1"></span>
                   <div className="size-16 rounded-full">
                     <img src="https://img.daisyui.com/images/profile/demo/distracted2@192.webp" />
                   </div>
