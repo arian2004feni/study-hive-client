@@ -2,7 +2,7 @@
 
 A collaborative group study platform where students can create, complete, and grade each other’s assignments in a social learning environment.
 
-🌐 **Live Site:** [https://assignmate-auth.web.app/](https://assignmate-auth.web.app/)
+🌐 **Live Site:** [https://study-hive-arian2004.web.app/](https://study-hive-arian2004.web.app/)
 
 ---
 
@@ -69,3 +69,4 @@ Study-Hive is designed to simplify group study by enabling friends to:
 | 24 | `sweetalert2`                   | Stylish popup alerts and modals                                  | Dependency      |
 | 25 | `tailwindcss`                   | Utility-first CSS framework                                      | Dependency      |
 | 26 | `vite`                          | Frontend build tool                                              | Dev Dependency  |
+
