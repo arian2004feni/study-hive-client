@@ -55,7 +55,7 @@ const NewsLetter = () => {
           <div className="join w-full">
             <input
               type="text"
-              className="input border-none focus:outline-none focus:shadow-none sm:input-lg w-full join-item"
+              className="input border-none focus:outline-none focus:shadow-none sm:input-lg w-full join-item my-auto"
               placeholder="Email Address"
             />
             <button className="btn bg-heading rounded-lg text-white sm:btn-xl join-item sm:text-lg">
