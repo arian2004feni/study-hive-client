@@ -10,7 +10,7 @@ const Faq = () => {
       initial={{ opacity: 0, y: 200 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="bg-gray-200 py-16"
+      className="bg-gray-100 py-16"
     >
       <div className="xl:max-w-10/12 max-lg:container mx-auto my-16 rounded-lg z-10">
         <h3 className="uppercase text-center text-2xl sm:text-3xl md:text-4xl text-black/80 font-medium mb-4">
